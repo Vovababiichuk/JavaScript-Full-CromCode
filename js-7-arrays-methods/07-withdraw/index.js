@@ -10,8 +10,10 @@ const withdraw = (clients, balances, client, amount) => {
     return -1;
   }
 
-  balances[clientIndex] -= amount;
-  return balances[clientIndex];
+  const newBalances = [...balances];
+
+  newBalances[clientIndex] -= amount;
+  return newBalances[clientIndex];
 };
 
 // examples
