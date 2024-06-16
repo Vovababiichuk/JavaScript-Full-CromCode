@@ -36,3 +36,12 @@
 // console.log(pickProps({}, ['a', 'c', 'd', 'hex'])); // ==> {}
 
 //! ===============================================
+
+// function pickProps(obj, props) {
+//   return Object.fromEntries(Object.entries(obj).filter(([key]) => props.includes(key)));
+// }
+
+// // Приклади:
+// console.log(pickProps({ a: 1, b: 2, c: 3 }, ['a', 'c'])); // ==> { a: 1, c: 3 }
+// console.log(pickProps({ a: 1, b: 2, c: 3 }, ['a', 'c', 'd', 'hex'])); // ==> { a: 1, c: 3 }
+// console.log(pickProps({}, ['a', 'c', 'd', 'hex'])); // ==> {}
