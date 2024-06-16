@@ -9,7 +9,7 @@
 
 // // examples
 // console.log(concatProps({ name: 'John Doe', age: 17, interest: 'football' })); // ==> ['John Doe', 17, 'football']
-//! =====================for in===============================
+//! ======================Object.values==============================
 const concatProps = obj => Object.values(obj);
 
 // examples
