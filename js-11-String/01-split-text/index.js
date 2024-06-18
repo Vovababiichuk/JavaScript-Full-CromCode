@@ -1,3 +1,6 @@
+// STRING/ARRAY METHODS - https://medium.com/jsunderthescope/table-of-javascript-string-and-array-methods-fdba7c5289f1
+
+
 const text = 'skdbljfbhvajfhbvlshbcjashc';
 
 const splitText = (text, len = 10) => {
