@@ -1,26 +1,36 @@
-const str = '1 + 2';
+const calc = str => {
+  const [a, operator, b] = str.split(' ').map(el => el.trim());
 
-const calc = expression => {
-  const [a, operator, b] = expression.split(' ');
-  let res;
+  const num1 = Number(a);
+  const num2 = Number(b);
 
-  switch (operator) {
-    case '+': {
-      res = +a + +b;
-      break;
-    }
-    case '-': {
-      res = a - b;
-      break;
-    }
-    default: {
-      return 'Error';
-    }
+  if (operator === '/' && num2 === 0) {
+    return 'Error: Division by zero';
   }
-  return `${expression} = ${res}`;
+
+  let res;
+  switch (operator) {
+    case '+':
+      res = +num1 + +num2;
+      break;
+    case '-':
+      res = num1 - num2;
+      break;
+    case '*':
+      res = num1 * num2;
+      break;
+    case '/':
+      res = num1 / num2;
+      break;
+    default:
+      return 'Error: Invalid operator';
+  }
+  return `${str} = ${res}`;
 };
 
 console.log(calc('1 + 2'));
-console.log(calc('1 - 6'));
-console.log(calc('-1 - 6'));
-console.log(calc('-0 - 6'));
+console.log(calc('10 - 2'));
+console.log(calc('13 * 2'));
+console.log(calc('18 / 2'));
+console.log(calc('18 / 0'));
+console.log(calc('18 % 0'));
