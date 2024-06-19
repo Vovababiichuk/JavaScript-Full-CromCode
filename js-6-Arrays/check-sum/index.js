@@ -1,13 +1,13 @@
 const checkSum = arr => {
-	if (Array.isArray(arr)) {
-		let sum = 0;
-		for (let i of arr) {
-			sum += i;
-		}
-		return sum > 100 ? true : false;
-	} else {
-		return null;
-	}
+  if (Array.isArray(arr)) {
+    let sum = 0;
+    for (let i of arr) {
+      sum += i;
+    }
+    return sum > 100 ? true : false;
+  } else {
+    return null;
+  }
 };
 
 console.log(checkSum([10, 10, 10])); // ===> false
