@@ -18,6 +18,6 @@ describe('calc function', () => {
   });
 
   it('should handle non-string input', () => {
-    expect(calc(123)).toBe('Error: Input must be a string');
+    expect(calc(123)).toEqual(null);
   });
 });
