@@ -1,5 +1,13 @@
 module.exports = {
   extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  overrides: [
+    {
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      rules: {
+        'prettier/prettier': 'off', // вимкнути правило Prettier для ESLint
+      },
+    },
+  ],
   env: {
     es6: true,
     jest: true,
