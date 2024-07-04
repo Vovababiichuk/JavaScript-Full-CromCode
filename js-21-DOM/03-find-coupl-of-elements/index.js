@@ -1,5 +1,5 @@
 export const getItemsList = () => {
-  const elementsList = Array.from(document.querySelectorAll('.technology'));
+  const elementsList = document.querySelectorAll('.technology');
   console.dir(elementsList);
   return elementsList;
 };
