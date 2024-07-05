@@ -15,8 +15,5 @@ export const finishList = () => {
   list.append(listItemLiEight);
   special.prepend(listItemLiFour);
   special.after(listItemLiSix);
-
-  console.log(list);
 };
 
-finishList();
