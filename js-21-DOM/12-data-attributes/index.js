@@ -1,8 +1,7 @@
 export const squaredNumbers = () => {
-  const number = document.querySelector('.number');
-  const numFive = number.dataset.number;
-  const squaredNumFive = numFive ** 2;
-  number.setAttribute('data-squared-number', squaredNumFive);
+  const numbers = document.querySelectorAll('.number');
+  numbers.forEach(number => {
+    const num = number.dataset.number ** 2;
+    number.setAttribute('data-squared-number', num);
+  })
 };
-
-squaredNumbers();
