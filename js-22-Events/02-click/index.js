@@ -1,5 +1,4 @@
-const clear = document.querySelector('.btn.clear-btn')
-console.log(clear);
+const clear = document.querySelector('.btn.create-btn')
 
 const handleClick = () => {
   alert('done');
