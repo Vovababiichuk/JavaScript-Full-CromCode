@@ -1,7 +1,8 @@
-const clear = document.querySelector('.btn.create-btn')
+const btn = document.querySelector('.create-btn')
+console.log(btn);
 
 const handleClick = () => {
   alert('done');
 }
 
-clear.addEventListener('click', handleClick)
+btn.addEventListener('click', handleClick)
