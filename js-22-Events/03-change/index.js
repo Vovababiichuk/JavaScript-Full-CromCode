@@ -4,4 +4,5 @@ const handleChange = (e) => {
   console.log(e.target.value);
 }
 
-input.addEventListener('change', handleChange);
+// input.addEventListener('change', handleChange);
+input.addEventListener('input', handleChange);
