@@ -19,4 +19,3 @@ export const finishList = () => {
   list.append(listItemLiEight);
 };
 
-finishList();
