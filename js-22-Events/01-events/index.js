@@ -2,15 +2,13 @@ const divRectEl = document.querySelector('.rect.rect_div');
 const pRectEl = document.querySelector('.rect.rect_p');
 const spanRectEl = document.querySelector('.rect.rect_span');
 
-const createDivElGreen = document.createElement('span');
-createDivElGreen.textContent = 'div';
+const clear = document.querySelector('.btn.clear-btn');
+const remove = document.querySelector('.btn.remove-handlers-btn');
+const attach = document.querySelector('.btn.attach-handlers-btn');
 
-const createPElGreen = document.createElement('p');
-createPElGreen.textContent = 'p';
+const divEventsList = document.querySelector('.rect.events-list');
 
 const handleAdd = (text, color) => {
-  const divEventsList = document.querySelector('.rect.events-list');
-
   divEventsList.innerHTML += `<span style="color: ${color}; margin-left: 8px">${text}</span>`;
 };
 
@@ -22,11 +20,32 @@ const handleGreenDiv = handleAdd.bind(null, 'div', 'green');
 const handleGreenP = handleAdd.bind(null, 'p', 'green');
 const handleGreenSpan = handleAdd.bind(null, 'span', 'green');
 
-divRectEl.addEventListener('click', handleGreyDiv, true);
-pRectEl.addEventListener('click', handleGreyP, true);
-spanRectEl.addEventListener('click', handleGreySpan, true);
+const attachHandlers = () => {
+  divRectEl.addEventListener('click', handleGreyDiv, true);
+  pRectEl.addEventListener('click', handleGreyP, true);
+  spanRectEl.addEventListener('click', handleGreySpan, true);
 
-divRectEl.addEventListener('click', handleGreenDiv);
-pRectEl.addEventListener('click', handleGreenP);
-spanRectEl.addEventListener('click', handleGreenSpan);
+  divRectEl.addEventListener('click', handleGreenDiv);
+  pRectEl.addEventListener('click', handleGreenP);
+  spanRectEl.addEventListener('click', handleGreenSpan);
+};
 
+const removeHandlers = () => {
+  divRectEl.removeEventListener('click', handleGreyDiv, true);
+  pRectEl.removeEventListener('click', handleGreyP, true);
+  spanRectEl.removeEventListener('click', handleGreySpan, true);
+
+  divRectEl.removeEventListener('click', handleGreenDiv);
+  pRectEl.removeEventListener('click', handleGreenP);
+  spanRectEl.removeEventListener('click', handleGreenSpan);
+};
+
+const clearEventsList = () => {
+  divEventsList.innerHTML = '';
+};
+
+attach.addEventListener('click', attachHandlers);
+remove.addEventListener('click', removeHandlers);
+clear.addEventListener('click', clearEventsList);
+
+attachHandlers();
