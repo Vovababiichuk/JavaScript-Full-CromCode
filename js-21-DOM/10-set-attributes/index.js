@@ -6,6 +6,4 @@ export const finishForm = () => {
   inputLogin.setAttribute('type', 'text');
   inputLogin.setAttribute('name', 'login');
   form.prepend(inputLogin)
-
-  console.log(form);
 }
