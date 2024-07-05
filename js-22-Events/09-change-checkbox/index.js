@@ -4,4 +4,4 @@ const handleClick = (e) => {
   console.log(e.target.checked);
 }
 
-checkBox.addEventListener('click', handleClick)
+checkBox.addEventListener('change', handleClick)
