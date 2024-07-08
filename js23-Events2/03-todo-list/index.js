@@ -13,14 +13,14 @@ const renderTasks = tasksList => {
 
   tasksList
     .sort((a, b) => b.done - a.done)
-    .forEach(({ text, done }, index) => {
+    .forEach(({ text, done }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
 
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = done;
-      checkbox.dataset.id = `task${index + 1}`;
+      checkbox.dataset.id = Math.floor(Math.random() * 90000) + 10000;
       checkbox.classList.add('list__item-checkbox');
 
       listItemElem.append(checkbox, text);
@@ -77,22 +77,11 @@ inputTask.addEventListener('keydown', e => {
 // v2
 
 const handleChangeTaskStatus = e => {
-  if (e.target.matches('.list__item-checkbox')) {
-    const checkboxLink = e.target;
-    const listItem = checkboxLink.closest('.list__item');
-    const taskId = checkboxLink.dataset.id;
+  const checkbox = document.querySelector('.list__item-checkbox');
 
-    tasks.forEach(task => {
-      if (`task${tasks.indexOf(task) + 1}` === taskId) {
-        task.done = checkboxLink.checked;
-
-        if (checkboxLink.checked) {
-          listItem.classList.add('list__item_done');
-        } else {
-          listItem.classList.remove('list__item_done');
-        }
-      }
-    });
+  if (checkbox) {
+    const listItem = checkbox.closest('.list__item');
+    listItem.classList.toggle('list__item_done', checkbox.checked);
   }
 };
 
