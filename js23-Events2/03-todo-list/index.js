@@ -12,7 +12,7 @@ const renderTasks = tasksList => {
   listElem.innerHTML = '';
 
   tasksList
-    .sort((a, b) => b.done - a.done)
+    .sort((a, b) => a.done - b.done)
     .forEach(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
@@ -24,7 +24,7 @@ const renderTasks = tasksList => {
       checkbox.classList.add('list__item-checkbox');
 
       listItemElem.append(checkbox, text);
-      listElem.prepend(listItemElem);
+      listElem.appendChild(listItemElem);
 
       listItemElem.classList.toggle('list__item_done', done);
     });
