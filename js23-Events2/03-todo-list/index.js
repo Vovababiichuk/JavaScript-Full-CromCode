@@ -1,9 +1,9 @@
 const tasks = [
-  { text: 'Buy milk', done: false },
-  { text: 'Pick up Tom from airport', done: false },
-  { text: 'Visit party', done: false },
-  { text: 'Visit doctor', done: true },
-  { text: 'Buy meat', done: true },
+  { id: 'task1', text: 'Buy milk', done: false },
+  { id: 'task2', text: 'Pick up Tom from airport', done: false },
+  { id: 'task3', text: 'Visit party', done: false },
+  { id: 'task4', text: 'Visit doctor', done: true },
+  { id: 'task5', text: 'Buy meat', done: true },
 ];
 
 const listElem = document.querySelector('.list');
