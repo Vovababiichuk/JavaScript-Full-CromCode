@@ -13,12 +13,13 @@ const renderTasks = tasksList => {
 
   tasksList
     .sort((a, b) => b.done - a.done)
-    .forEach(({ text, done }) => {
+    .forEach(({ text, done }, index) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = done;
+      checkbox.dataset.id = `task${index + 1}`;
       checkbox.classList.add('list__item-checkbox');
       if (done) {
         listItemElem.classList.add('list__item_done');
@@ -57,17 +58,42 @@ inputTask.addEventListener('keydown', e => {
   }
 });
 
+// v1
+
+// const handleChangeTaskStatus = e => {
+//   // В обробнику подій перевіряється, чи елемент, який спричинив подію (e.target), відповідає селектору .list__item-checkbox.
+//   if (e.target.matches('.list__item-checkbox')) {
+//     const checkboxLink = e.target;
+//     const listItem = checkboxLink.closest('.list__item');
+
+//     if (checkboxLink.checked) {
+//       listItem.classList.add('list__item_done');
+//     } else {
+//       listItem.classList.remove('list__item_done');
+//     }
+//   }
+// };
+
+// v2
+
 const handleChangeTaskStatus = e => {
   // В обробнику подій перевіряється, чи елемент, який спричинив подію (e.target), відповідає селектору .list__item-checkbox.
   if (e.target.matches('.list__item-checkbox')) {
     const checkboxLink = e.target;
     const listItem = checkboxLink.closest('.list__item');
+    const taskId = checkboxLink.dataset.id;
 
-    if (checkboxLink.checked) {
-      listItem.classList.add('list__item_done');
-    } else {
-      listItem.classList.remove('list__item_done');
-    }
+    tasks.forEach(task => {
+      if (`task${tasks.indexOf(task) + 1}` === taskId) {
+        task.done = checkboxLink.checked;
+
+        if (checkboxLink.checked) {
+          listItem.classList.add('list__item_done');
+        } else {
+          listItem.classList.remove('list__item_done');
+        }
+      }
+    });
   }
 };
 
