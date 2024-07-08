@@ -1,9 +1,9 @@
 const tasks = [
-  { id: 'task1', text: 'Buy milk', done: false },
-  { id: 'task2', text: 'Pick up Tom from airport', done: false },
-  { id: 'task3', text: 'Visit party', done: false },
-  { id: 'task4', text: 'Visit doctor', done: true },
-  { id: 'task5', text: 'Buy meat', done: true },
+  { id: '1', text: 'Buy milk', done: false },
+  { id: '2', text: 'Pick up Tom from airport', done: false },
+  { id: '3', text: 'Visit party', done: false },
+  { id: '4', text: 'Visit doctor', done: true },
+  { id: '5', text: 'Buy meat', done: true },
 ];
 
 const listElem = document.querySelector('.list');
@@ -45,7 +45,7 @@ const handleCreateTask = () => {
       text: taskText,
       done: false,
     };
-    tasks.push(newTask);
+    tasks.unshift(newTask);
     renderTasks(tasks);
     inputTask.value = '';
   }
@@ -59,23 +59,6 @@ inputTask.addEventListener('keydown', e => {
   }
 });
 
-// v1
-
-// const handleChangeTaskStatus = e => {
-//   // В обробнику подій перевіряється, чи елемент, який спричинив подію (e.target), відповідає селектору .list__item-checkbox.
-//   if (e.target.matches('.list__item-checkbox')) {
-//     const checkboxLink = e.target;
-//     const listItem = checkboxLink.closest('.list__item');
-
-//     if (checkboxLink.checked) {
-//       listItem.classList.add('list__item_done');
-//     } else {
-//       listItem.classList.remove('list__item_done');
-//     }
-//   }
-// };
-
-// v2
 
 const handleChangeTaskStatus = e => {
   if (e.target.classList.contains('list__item-checkbox')) {
