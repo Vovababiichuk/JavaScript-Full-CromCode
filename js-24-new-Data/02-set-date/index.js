@@ -2,7 +2,7 @@ const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 export const dayOfWeek = (date, days) => {
 	const day = new Date(date).getDate();
 	const dateInFuture = new Date(date).setDate(day + days);
-	console.log(weekDays[new Date(dateInFuture).getDay()]);
+	return weekDays[new Date(dateInFuture).getDay()];
 }
 
-dayOfWeek(new Date(2024, 0, 1), 14)
+console.log(dayOfWeek(new Date(2024, 0, 1), 14));
