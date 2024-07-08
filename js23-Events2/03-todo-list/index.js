@@ -16,17 +16,17 @@ const renderTasks = tasksList => {
     .forEach(({ text, done }, index) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
+
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = done;
       checkbox.dataset.id = `task${index + 1}`;
       checkbox.classList.add('list__item-checkbox');
-      if (done) {
-        listItemElem.classList.add('list__item_done');
-      }
-      listItemElem.append(checkbox, text);
 
+      listItemElem.append(checkbox, text);
       listElem.prepend(listItemElem);
+
+      listItemElem.classList.toggle('list__item_done', done);
     });
 };
 
