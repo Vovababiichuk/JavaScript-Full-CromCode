@@ -13,14 +13,14 @@ const renderTasks = tasksList => {
 
   tasksList
     .sort((a, b) => b.done - a.done)
-    .forEach(({ text, done }) => {
+    .forEach(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
 
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = done;
-      checkbox.dataset.id = Math.floor(Math.random() * 90000) + 10000;
+      checkbox.dataset.id = id;
       checkbox.classList.add('list__item-checkbox');
 
       listItemElem.append(checkbox, text);
@@ -41,6 +41,7 @@ const handleCreateTask = () => {
   const taskText = inputTask.value.trim();
   if (taskText) {
     const newTask = {
+      id: `task${tasks.length + 1}`,
       text: taskText,
       done: false,
     };
@@ -77,11 +78,13 @@ inputTask.addEventListener('keydown', e => {
 // v2
 
 const handleChangeTaskStatus = e => {
-  const checkbox = document.querySelector('.list__item-checkbox');
-
-  if (checkbox) {
-    const listItem = checkbox.closest('.list__item');
-    listItem.classList.toggle('list__item_done', checkbox.checked);
+  if (e.target.classList.contains('list__item-checkbox')) {
+    const taskId = e.target.dataset.id;
+    const taskIndex = tasks.findIndex(task => task.id === taskId);
+    if (taskIndex !== -1) {
+      tasks[taskIndex].done = !tasks[taskIndex].done;
+      renderTasks(tasks);
+    }
   }
 };
 
