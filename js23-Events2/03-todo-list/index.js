@@ -77,7 +77,6 @@ inputTask.addEventListener('keydown', e => {
 // v2
 
 const handleChangeTaskStatus = e => {
-  // В обробнику подій перевіряється, чи елемент, який спричинив подію (e.target), відповідає селектору .list__item-checkbox.
   if (e.target.matches('.list__item-checkbox')) {
     const checkboxLink = e.target;
     const listItem = checkboxLink.closest('.list__item');
