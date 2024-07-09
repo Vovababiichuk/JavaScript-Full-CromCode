@@ -58,7 +58,7 @@ const onCreateTask = () => {
   }
   taskTitleInputElem.value = '';
 
-  tasks.push({
+  tasks.unshift({
     text,
     done: false,
     id: Math.random().toString(),
