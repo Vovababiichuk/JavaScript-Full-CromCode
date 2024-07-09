@@ -14,6 +14,7 @@ export const studentsBirthDays = students => {
 	}, {})
 }
 
+
 console.log(
 	studentsBirthDays([
 		{ name: 'Den', birthDate: '01/15/2010' },
