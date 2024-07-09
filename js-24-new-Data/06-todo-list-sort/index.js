@@ -10,24 +10,31 @@ const listElem = document.querySelector('.list');
 
 const renderTasks = tasksList => {
   listElem.innerHTML = '';
-  const tasksElems = tasksList
-    .slice()
-    .sort((a, b) => a.done - b.done)
-    .map(({ text, done, id }) => {
-      const listItemElem = document.createElement('li');
-      listItemElem.classList.add('list__item');
-      const checkbox = document.createElement('input');
-      checkbox.setAttribute('type', 'checkbox');
-      checkbox.setAttribute('data-id', id);
-      checkbox.checked = done;
-      checkbox.classList.add('list__item-checkbox');
-      if (done) {
-        listItemElem.classList.add('list__item_done');
-      }
-      listItemElem.append(checkbox, text);
 
-      return listItemElem;
-    });
+  // Сортуємо задачі: спочатку відображаються невиконані, потім виконані в порядку їхнього додавання
+  const sortedTasks = tasksList.slice().sort((a, b) => {
+    if (a.done && !b.done) return 1; // якщо a виконана, а b - ні, то a має бути пізніше в списку
+    if (!a.done && b.done) return -1; // якщо b виконана, а a - ні, то a має бути раніше в списку
+    return 0; // якщо обидві або ні одна з них не виконана, порівняння залишається без змін
+  });
+
+  const tasksElems = sortedTasks.map(({ text, done, id }) => {
+    const listItemElem = document.createElement('li');
+    listItemElem.classList.add('list__item');
+
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('data-id', id);
+    checkbox.checked = done;
+    checkbox.classList.add('list__item-checkbox');
+
+    if (done) {
+      listItemElem.classList.add('list__item_done');
+    }
+    listItemElem.append(checkbox, text);
+
+    return listItemElem;
+  });
 
   listElem.append(...tasksElems);
 };
