@@ -11,7 +11,7 @@ export const studentsBirthDays = students => {
 			...student,
 			dayOfWeek: new Date(student.birthDate).getDay(),
 		}))
-		.sort((a, b) => a.dayOfWeek - b.dayOfWeek)
+		.sort((a, b) => b.dayOfWeek - a.dayOfWeek)
 }
 
 console.log(
