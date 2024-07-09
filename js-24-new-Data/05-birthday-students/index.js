@@ -5,7 +5,7 @@
 // 2. get day of week
 // 3. Sort students by day of week
 
-const studentsBirthDays = students => {
+export const studentsBirthDays = students => {
 	return students
 		.map(student => ({
 			...student,
