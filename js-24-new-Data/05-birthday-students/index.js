@@ -1,24 +1,16 @@
-// input: [{}]
-// output: sort [{}]
-
-// 1. iteration array
-// 2. get day of week
-// 3. Sort students by day of week
-
 export const studentsBirthDays = students => {
-	return students
-		.map(student => ({
-			...student,
-			dayOfWeek: new Date(student.birthDate).getDay(),
-		}))
-		.sort((a, b) => b.dayOfWeek - a.dayOfWeek)
-}
+  return students.sort((a, b) => {
+    const dayOfWeekA = new Date(a.birthDate).getDay();
+    const dayOfWeekB = new Date(b.birthDate).getDay();
+    return dayOfWeekB - dayOfWeekA;
+  });
+};
 
 console.log(
-	studentsBirthDays([
-		{ name: 'Den', birthDate: '01/15/2010' },
-		{ name: 'John', birthDate: '10/10/2010' },
-		{ name: 'Ann', birthDate: '12/12/2010' },
-		{ name: 'Mike', birthDate: '01/01/2010' },
-	])
-)
+  studentsBirthDays([
+    { name: 'Den', birthDate: '01/15/2010' },
+    { name: 'John', birthDate: '10/10/2010' },
+    { name: 'Ann', birthDate: '12/12/2010' },
+    { name: 'Mike', birthDate: '01/01/2010' },
+  ]),
+);
