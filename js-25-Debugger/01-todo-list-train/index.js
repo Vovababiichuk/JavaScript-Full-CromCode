@@ -23,6 +23,7 @@ const renderTasks = tasksList => {
   });
 
   const tasksElems = sortedTasks.map(({ text, done, id }) => {
+    debugger;
     const listItemElem = document.createElement('li');
     listItemElem.classList.add('list__item');
 
