@@ -8,17 +8,18 @@ localStorage.setItem('hobbies', JSON.stringify({ sport: 'football' }));
 
 export const getLocalStorageData = () => {
   return Object.entries(localStorage).reduce((acc, [key, value]) => {
-    let newValue;
+    let parsedValue;
     try {
-      newValue = JSON.parse(value);
+      parsedValue = JSON.parse(value);
     } catch (e) {
-      newValue = value;
+      parsedValue = value;
     }
     return {
       ...acc,
-      [key]: value,
+      [key]: parsedValue,
     };
   }, {});
 };
+
 
 console.log(getLocalStorageData());
