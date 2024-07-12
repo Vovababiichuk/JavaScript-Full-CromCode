@@ -1,6 +1,6 @@
-export const favorites = ['id-2'];
+const favorites = ['id-6', 'id-17'];
 
-export const tree = {
+const tree = {
   id: 'id-1',
   name: 'Products',
   nodes: [
@@ -9,27 +9,32 @@ export const tree = {
       name: 'Food',
       nodes: [
         {
-          id: 'id-6',
-          name: 'Drinks',
+          id: 'id-2',
+          name: 'Food',
+          nodes: [
+            {
+              id: 'id-6',
+              name: 'Drinks',
+              nodes: [],
+            },
+          ],
+        },
+        {
+          id: 'id-17',
+          name: 'Vehicles',
           nodes: [],
         },
       ],
-    },
-    {
-      id: 'id-17',
-      name: 'Vehicles',
-      nodes: [],
     },
   ],
 };
 
 export const markFavorites = (tree, favorites) => {
-  const isFavorites = favorites.includes(tree.id);
+  const isFavorite = favorites.includes(tree.id);
 
   return {
     ...tree,
-    isFavorites,
+    isFavorite,
     nodes: tree.nodes.map(childNode => markFavorites(childNode, favorites)),
   };
 };
-
