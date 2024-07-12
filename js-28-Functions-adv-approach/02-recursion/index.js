@@ -1,6 +1,6 @@
-const favorites = ['id-2'];
+export const favorites = ['id-2'];
 
-const tree = {
+export const tree = {
   id: 'id-1',
   name: 'Products',
   nodes: [
@@ -33,4 +33,3 @@ export const markFavorites = (tree, favorites) => {
   };
 };
 
-console.log(markFavorites(tree, favorites));
