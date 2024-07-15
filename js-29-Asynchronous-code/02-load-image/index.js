@@ -1,16 +1,15 @@
 export const addImage = (imgSrc, callback) => {
+  const imgElem = document.createElement('img');
+  imgElem.setAttribute('alt', 'My Image');
+  imgElem.src = imgSrc;
   const page = document.querySelector('.page');
-  const createImageEl = document.createElement('img');
-  createImageEl.setAttribute('alt', 'My Image');
-  createImageEl.src = imgSrc;
-  createImageEl.addEventListener('load', () => {
-    console.log('Image loaded');
-    page.append(createImageEl);
+  page.append(imgElem);
 
-    if (callback) {
-      callback(null, createImageEl);
-    }
-  });
+  const onImageLoaded = () => {
+    callback(null, imgElem);
+  };
+
+  imgElem.addEventListener('load', onImageLoaded);
 };
 
 const onImageLoaded = (error, imgElem) => {
