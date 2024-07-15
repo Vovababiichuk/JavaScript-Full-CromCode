@@ -3,19 +3,15 @@ export const addImage = (imgSrc, callback) => {
   imgElem.setAttribute('alt', 'My Image');
   imgElem.src = imgSrc;
   const page = document.querySelector('.page');
+  console.log(page);
   page.append(imgElem);
 
-  const onImageError = () => {
-    callback(new Error('Image load is failed!'));
-  };
-
   const onImageLoaded = () => {
-    const { width, height } = imgElem;
-    callback(null, { width, height });
+    callback(null, imgElem);
   };
 
-  imgElem.addEventListener('error', onImageError);
   imgElem.addEventListener('load', onImageLoaded);
+  imgElem.addEventListener('error', () => console.log('Image load is failed'));
 };
 
 const onImageLoaded = (error, imgElem) => {
@@ -29,8 +25,3 @@ const onImageLoaded = (error, imgElem) => {
 
   sizeElem.textContent = `${width} x ${height}`;
 };
-
-addImage(
-  'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg',
-  onImageLoaded,
-);
