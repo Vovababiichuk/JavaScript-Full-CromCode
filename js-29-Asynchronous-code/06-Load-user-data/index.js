@@ -1,9 +1,9 @@
-export const requestUserData = (userId, callback) => {
-  const randomDelay = Math.random() * 1000;
+const requestUserData = (userId, callback) => {
+  const randomDelay = 1000 + Math.random() * 2000;
 
   setTimeout(() => {
     if (userId === 'broken') {
-      callback(userId, 'Failed to load user data');
+      callback(null, 'Failed to load user data');
     } else {
       callback(null, {
         userId,
@@ -15,10 +15,11 @@ export const requestUserData = (userId, callback) => {
 
 const onUserDataLoaded = (error, data) => {
   if (error) {
-    return console.log(error);
+    console.log(error);
+  } else {
+    console.log(data);
   }
-  return console.log(data);
 };
 
-requestUserData('1', onUserDataLoaded); // Should return { userId: '1', email: '1@example.com' }
-requestUserData('broken', onUserDataLoaded); // Should return 'Failed to load user data'
+requestUserData('1', onUserDataLoaded);
+requestUserData('broken', onUserDataLoaded);
