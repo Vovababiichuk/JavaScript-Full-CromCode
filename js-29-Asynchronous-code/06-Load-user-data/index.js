@@ -1,4 +1,4 @@
-const requestUserData = (userId, callback) => {
+export const requestUserData = (userId, callback) => {
   const randomDelay = Math.random() * 1000;
 
   setTimeout(() => {
