@@ -1,5 +1,5 @@
 export const pinger = (count, period) => {
-  let currentCount = 0;
+  let currentCount = 1;
   console.log('Ping');
 
   const intervalId = setInterval(() => {
