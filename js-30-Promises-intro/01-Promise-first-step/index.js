@@ -3,6 +3,8 @@ export const addImage = imgSrc => {
     const imgEl = document.createElement('img');
     imgEl.setAttribute('alt', 'My image');
     imgEl.src = imgSrc;
+    const page = document.querySelector('.page');
+    page.append(imgEl);
 
     const onImageLoaded = () => {
       const { width, height } = imgEl;
@@ -10,15 +12,20 @@ export const addImage = imgSrc => {
     };
 
     imgEl.addEventListener('load', onImageLoaded);
-		imgEl.addEventListener('error', () => rejectCb(new Error('Image load is failed')));
+    imgEl.addEventListener('error', () => rejectCb(new Error('Image load is failed')));
   });
 
-	return p;
+  return p;
 };
 
-const imgSrc = 'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg';
+const imgSrc =
+  'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg';
 
 const resPromise = addImage(imgSrc);
+const imageSize = document.querySelector('.image-size');
 
-resPromise.then(data => console.log(data));
-resPromise.catch(err => console.log(err))
+resPromise
+  .then(({ width, height }) => {
+    imageSize.textContent = `${width} x ${height}`;
+  })
+  .catch(err => console.log(err));
