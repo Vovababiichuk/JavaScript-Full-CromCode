@@ -3,7 +3,7 @@ const requestUserData = (userId, callback) => {
 
   setTimeout(() => {
     if (userId === 'broken') {
-      callback(null, 'Failed to load user data');
+      callback('Failed to load user data', null);
     } else {
       callback(null, {
         userId,
