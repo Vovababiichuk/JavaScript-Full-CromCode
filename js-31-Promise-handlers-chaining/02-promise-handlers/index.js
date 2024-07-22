@@ -19,5 +19,10 @@ export const requestUserData = userId => {
   return pr;
 };
 
-// requestUserData('userid777').then(data => console.log(data));
-// requestUserData('broken').catch(err => console.log(err));
+requestUserData('userid777')
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
+requestUserData('broken')
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
