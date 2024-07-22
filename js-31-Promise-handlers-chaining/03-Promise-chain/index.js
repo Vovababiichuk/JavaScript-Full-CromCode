@@ -4,23 +4,24 @@ export const asyncCalculator = numbr => {
       console.log(`Initial value: ${numbr}`);
       resolve(numbr);
     }, 500);
+  }).then(value => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const squaredValue = value * value;
+        console.log(`Squared value: ${squaredValue}`);
+        resolve(squaredValue);
+      }, 500);
+    });
+  }).then(squaredValue => {
+    const doubledValue = squaredValue * 2;
+    console.log(`Doubled value: ${doubledValue}`);
+    return doubledValue;
   });
 };
 
 asyncCalculator(5)
-  .then(value => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const res = value * value;
-        console.log(`Squared value: ${res}`);
-        resolve(res);
-      }, 500);
-    });
-  })
-  .then(value => {
-    const doubledValue = value * 2;
-    console.log(`Doubled value: ${doubledValue}`);
-    return doubledValue;
+  .then(result => {
+    console.log(`Final result: ${result}`);
   })
   .catch(err => {
     console.error('An error occurred:', err);
