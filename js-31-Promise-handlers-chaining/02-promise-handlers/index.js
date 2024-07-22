@@ -9,7 +9,7 @@ export const requestUserData = userId => {
         resolve({
           name: 'John',
           age: 17,
-          userId: 'userid777',
+          userId,
           email: 'userid777@example.com',
         })
       }, 1000)
@@ -19,5 +19,5 @@ export const requestUserData = userId => {
   return pr;
 };
 
-requestUserData().then(data => console.log(data));
+requestUserData('userid777').then(data => console.log(data));
 requestUserData('broken').catch(err => console.log(err));
