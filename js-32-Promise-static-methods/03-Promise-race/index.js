@@ -6,15 +6,15 @@ const request = url =>
     setTimeout(() => {
       resolve({
         userData: {
-          name: 'John',
-          age: 30,
+          name: 'Tom',
+          age: 17,
         },
         source: url,
       });
     }, randomDelay);
   });
 
-const servers = ['https://server.com/us', 'https://server.com/eu', 'https://server.com/au'];
+const servers = ['https://server.com/us/userId', 'https://server.com/eu/userId', 'https://server.com/au/userId'];
 
 export const getUserASAP = userId => {
   const userUrls = servers.map(serverUrl => `${serverUrl}/users/${userId}`);
