@@ -13,7 +13,7 @@ const checkInput = (input) => {
     alert('ERROR, empty field! Enter User Name!');
     return null;
   }
-  input.value = '';
+  // input.value = '';
   return userName;
 }
 
