@@ -4,6 +4,9 @@ const userNameSpan = document.querySelector('.user__name');
 const userLocationSpan = document.querySelector('.user__location');
 const userAvatar = document.querySelector('.user__avatar')
 
+const defaultAvatar = 'https://ui-avatars.com/api/?name=User&background=random&color=fff';
+userAvatar.src = defaultAvatar;
+
 const checkInput = (input) => {
   const userName = input.value.trim();
   if (userName === '') {
@@ -25,14 +28,14 @@ const fetchUserData = (userName) => {
 }
 
 const updateUserInfo = ({ avatar_url, name, location }) => {
-  userAvatar.src = avatar_url || 'default-avatar.png';
+  userAvatar.src = avatar_url || defaultAvatar;
   userNameSpan.textContent = name || 'Name is not available';
   userLocationSpan.textContent = location || 'Location not available';
 }
 
 const handleError = (error) => {
   console.error('Error:', error);
-  userAvatar.src = 'default-avatar.png';
+  userAvatar.src = defaultAvatar;
   userNameSpan.textContent = 'User not found';
   userLocationSpan.textContent = '';
 }
@@ -46,4 +49,4 @@ const handleDataUser = () => {
 		.catch(handleError)
 }
 
-btnShow.addEventListener('click', handleDataUser)
+btnShow.addEventListener('click', handleDataUser);
