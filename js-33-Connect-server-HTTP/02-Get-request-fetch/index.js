@@ -1,0 +1,49 @@
+const btnShow = document.querySelector('.name-form__btn');
+const userNameInput = document.querySelector('.name-form__input');
+const userNameSpan = document.querySelector('.user__name');
+const userLocationSpan = document.querySelector('.user__location');
+const userAvatar = document.querySelector('.user__avatar')
+
+const checkInput = (input) => {
+  const userName = input.value.trim();
+  if (userName === '') {
+    alert('ERROR, empty field! Enter User Name!');
+    return null;
+  }
+  input.value = '';
+  return userName;
+}
+
+const fetchUserData = (userName) => {
+  return fetch(`https://api.github.com/users/${userName}`)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`User not found: ${res.status}`);
+      }
+      return res.json();
+    });
+}
+
+const updateUserInfo = ({ avatar_url, name, location }) => {
+  userAvatar.src = avatar_url || 'default-avatar.png';
+  userNameSpan.textContent = name || 'Name is not available';
+  userLocationSpan.textContent = location || 'Location not available';
+}
+
+const handleError = (error) => {
+  console.error('Error:', error);
+  userAvatar.src = 'default-avatar.png';
+  userNameSpan.textContent = 'User not found';
+  userLocationSpan.textContent = '';
+}
+
+const handleDataUser = () => {
+	const userName = checkInput(userNameInput);
+	if (!userName) return;
+
+	fetchUserData(userName)
+		.then(updateUserInfo)
+		.catch(handleError)
+}
+
+btnShow.addEventListener('click', handleDataUser)
