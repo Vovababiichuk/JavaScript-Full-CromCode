@@ -1,4 +1,4 @@
-function getMostActiveDevs({ days, userId, repoId }) {
+export function getMostActiveDevs({ days, userId, repoId }) {
   const date = new Date();
   date.setDate(date.getDate() - days);
   const since = date.toISOString();
