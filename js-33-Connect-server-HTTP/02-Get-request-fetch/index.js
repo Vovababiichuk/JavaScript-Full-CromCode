@@ -66,7 +66,8 @@ const defaultAvatar = 'https://ui-avatars.com/api/?name=User&background=random&c
 userAvatar.src = defaultAvatar;
 
 const fetchUserData = userName => {
-  return fetch(`https://api.github.com/users/${userName}`).then(response => response.json());
+  return fetch(`https://api.github.com/users/${userName}`)
+    .then(response => response.json());
 };
 
 const renderUserData = userData => {
