@@ -1,9 +1,9 @@
 const tasks = [
-  { text: 'Buy milk', done: false, id: '1' },
-  { text: 'Pick up Tom from airport', done: false, id: '2' },
-  { text: 'Visit party', done: false, id: '3' },
-  { text: 'Visit doctor', done: true, id: '4' },
-  { text: 'Buy meat', done: true, id: '5' },
+  { text: 'Buy milk', done: false, id: 1 },
+  { text: 'Pick up Tom from airport', done: false, id: 2 },
+  { text: 'Visit party', done: false, id: 3 },
+  { text: 'Visit doctor', done: true, id: 4 },
+  { text: 'Buy meat', done: true, id: 5 },
 ];
 
 const listElem = document.querySelector('.list');
@@ -56,7 +56,7 @@ const onCreateTask = () => {
   tasks.push({
     text,
     done: false,
-    id: Math.random().toString(),
+    id: tasks.length + 1,
   });
 
   renderTasks(tasks);
