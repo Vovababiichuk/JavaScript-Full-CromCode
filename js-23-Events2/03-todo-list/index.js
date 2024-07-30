@@ -56,7 +56,7 @@ const onCreateTask = () => {
   tasks.push({
     text,
     done: false,
-    id: Math.floor(Math.random() * 1000),
+    id: Math.random(),
   });
 
   renderTasks(tasks);
