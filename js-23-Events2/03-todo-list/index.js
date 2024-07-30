@@ -39,7 +39,8 @@ const onToggleTask = e => {
 
   if (!isCheckbox) return;
 
-  const taskData = tasks.find(task => task.id === e.target.dataset.id);
+  const taskId = Number(e.target.dataset.id);
+  const taskData = tasks.find(task => task.id === taskId);
   taskData.done = e.target.checked;
   renderTasks(tasks);
 };
@@ -56,7 +57,7 @@ const onCreateTask = () => {
   tasks.push({
     text,
     done: false,
-    id: Math.random(),
+    id: tasks.length + 1,
   });
 
   renderTasks(tasks);
