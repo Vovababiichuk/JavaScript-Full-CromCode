@@ -7,31 +7,38 @@ const checkFormValidity = () => {
   buttonElem.disabled = !formElem.reportValidity();
 };
 
+const handleResponse = res => {
+  if (!res.ok) {
+    throw new Error(`Failed to create user: ${res.statusText}`);
+  }
+  return res.json();
+};
+
+const handleSuccess = user => {
+  alert(JSON.stringify(user));
+  formElem.reset();
+  buttonElem.disabled = true;
+};
+
+const handleError = err => {
+  console.error('Error creating user', err);
+};
+
 const onFormSubmit = e => {
   e.preventDefault();
   const formData = Object.fromEntries(new FormData(formElem));
 
-  return fetch(baseUrl, {
+  fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(formData),
   })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Failed to create user: ${res.statusText}`);
-      }
-      return res.json();
-    })
-    .then(user => {
-      alert(JSON.stringify(user));
-      console.log('User created', user);
-      formElem.reset();
-      buttonElem.disabled = true;
-    })
-    .catch(err => console.error('Error creating user', err));
+    .then(handleResponse)
+    .then(handleSuccess)
+    .catch(handleError);
 };
 
 formElem.addEventListener('input', checkFormValidity);
-buttonElem.addEventListener('click', onFormSubmit);
+formElem.addEventListener('submit', onFormSubmit);
