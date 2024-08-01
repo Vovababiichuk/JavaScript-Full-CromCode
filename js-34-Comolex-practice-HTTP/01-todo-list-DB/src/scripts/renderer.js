@@ -22,12 +22,20 @@ const createCheckbox = ({ done, id }) => {
 const createListItem = ({ text, done, id }) => {
   const listItemElem = document.createElement('li');
   listItemElem.classList.add('list-item', 'list__item');
+  const checkboxElem = createCheckbox({ done, id });
+  console.log(id);
   if (done) {
     listItemElem.classList.add('list-item_done');
   }
 
-  const checkboxElem = createCheckbox({ done, id });
-  listItemElem.append(checkboxElem, text);
+  const textElem = document.createElement('span');
+  textElem.classList.add('list-item__text');
+  textElem.textContent = text;
+
+  const deleteBtnElem = document.createElement('button');
+  deleteBtnElem.classList.add('list-item__delete-btn')
+
+  listItemElem.append(checkboxElem, textElem, deleteBtnElem);
 
   return listItemElem;
 };
