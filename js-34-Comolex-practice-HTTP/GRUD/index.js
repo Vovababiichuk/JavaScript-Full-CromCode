@@ -1,62 +1,44 @@
 const baseUrl = 'https://66ab4981636a4840d7ca0299.mockapi.io/api/v1/users';
 
-export function getUsersList() {
+function getUsersList() {
   return fetch(baseUrl)
-    .then(res => {
-      if (!res.ok) {
-        return new Error(`Network response was not ok ${res.statusText}`);
-      }
-      return res.json();
-    })
-    .catch(err => {
-      console.error('There was an error with fetching users', err);
-    })
+  .then((res) => res.json())
+  .then(users => users)
 }
 
-export function getUserById(userId) {
-	return fetch(`${baseUrl}/${userId}`)
-		.then(res => res.json())
-		.catch(err => console.error(err))
+function getUserById(userId) {
+  return fetch(`${baseUrl}/${userId}`)
+  .then((res) => res.json())
+  .then(user => user);
 }
 
-export function createUser(userData) {
-	return fetch(baseUrl, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json;charset=utf-8'
-		},
-		body: JSON.stringify(userData)
-	})
-		.then(res => res.json())
-		.catch(err => console.error(err))
+function createUser(userData) {
+  return fetch(baseUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(userData),
+  })
 }
 
-export function deleteUser(userId) {
-	return fetch(`${baseUrl}/${userId}`, {
-		method: 'DELETE',
-	})
-	.catch(err => console.error(err))
+function deleteUser(userId) {
+  return fetch(`${baseUrl}/${userId}`, {
+    method: 'DELETE',
+  })
 }
 
-
-export function updateUser(userId, userData) {
-	const url = `${baseUrl}/${userId}`
-	return fetch(url, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json;charset=utf-8'
-		},
-		body: JSON.stringify(userData)
-	})
-	.then(res => {
-		if (!res.ok) {
-			return new Error(`Network response was not ok ${res.statusText}`);
-		}
-		return res.json();
-	})
-	.catch(err => console.error('There was an error with updating user', err))
+function updateUser(userId, userData) {
+  return fetch(`${baseUrl}/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(userData),
+  })
 }
 
+// examples
 getUsersList().then(users => {
   console.log(users); // array of the user objects [{'id':'1', 'firstName':'Grayce' ... }, {'id':'2', 'firstName':'Ara' ... }, ...]
 });
