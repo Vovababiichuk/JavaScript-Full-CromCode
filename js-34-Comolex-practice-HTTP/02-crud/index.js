@@ -1,4 +1,4 @@
-export const baseUrl = 'https://66ab4981636a4840d7ca0299.mockapi.io/api/v1/users';
+const baseUrl = 'https://66ab4981636a4840d7ca0299.mockapi.io/api/v1/users';
 
 export function getUsersList() {
   return fetch(baseUrl)
