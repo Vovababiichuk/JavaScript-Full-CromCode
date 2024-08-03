@@ -81,13 +81,14 @@ const inputFormElem = document.querySelector('.name-form__input');
 const nameUserElem = document.querySelector('.user__name');
 const locationUserElem = document.querySelector('.user__location');
 const repoListElem = document.querySelector('.repo-list');
+const spinnerElem = document.querySelector('.spinner');
 
 avatarElem.src = defaultAvatarUrl;
 
 const displayLoadingState = () => {
   nameUserElem.textContent = 'Loading...';
   locationUserElem.textContent = 'Loading...';
-  repoListElem.innerHTML = '<li>Loading...</li>';
+	spinnerElem.classList.remove('spinner_hidden');
 };
 
 const fetchUserRepos = repoUrl => {
@@ -101,21 +102,20 @@ const fetchUserRepos = repoUrl => {
     .then(repos => {
       repoListElem.innerHTML = '';
 
-      if (repos.length === 0) {
-        repoListElem.innerHTML = '<li>No repositories found</li>';
-      } else {
-        repos.map(({ name }) => {
-          const repoListItemElem = document.createElement('li');
-          repoListItemElem.classList.add('repo-list__item');
-          repoListItemElem.textContent = name;
+      repos.map(({ name }) => {
+        const repoListItemElem = document.createElement('li');
+        repoListItemElem.classList.add('repo-list__item');
+        repoListItemElem.textContent = name;
 
-          return repoListElem.append(repoListItemElem);
-        });
-      }
+        return repoListElem.append(repoListItemElem);
+      });
     })
     .catch(err => {
       console.error(err.message);
       repoListElem.innerHTML = `<li>${err.message}</li>`;
+    })
+    .finally(() => {
+			spinnerElem.classList.add('spinner_hidden');
     });
 };
 
@@ -135,7 +135,7 @@ const fetchUserData = () => {
       return res.json();
     })
     .then(user => {
-			console.log(user);
+      console.log(user);
       const { avatar_url: avatar, name, location, repos_url: repoUrl } = user;
       nameUserElem.textContent = name || 'unknown';
       locationUserElem.textContent = `from ${location}` || 'unknown';
