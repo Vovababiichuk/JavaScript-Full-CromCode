@@ -152,7 +152,10 @@ const fetchUserData = () => {
     .catch(err => {
       console.error(err.message);
       alert('Failed to load data');
-    });
+    })
+		.finally(() => {
+			spinnerElem.classList.add('spinner_hidden');
+		});
 };
 
 const handleUserDataRequest = () => {
