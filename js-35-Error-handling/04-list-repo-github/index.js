@@ -135,9 +135,10 @@ const fetchUserData = () => {
       return res.json();
     })
     .then(user => {
+			console.log(user);
       const { avatar_url: avatar, name, location, repos_url: repoUrl } = user;
       nameUserElem.textContent = name || 'unknown';
-      locationUserElem.textContent = location || 'unknown';
+      locationUserElem.textContent = `from ${location}` || 'unknown';
       avatarElem.src = avatar || defaultAvatarUrl;
 
       return fetchUserRepos(repoUrl);
