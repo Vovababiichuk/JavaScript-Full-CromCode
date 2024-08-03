@@ -88,7 +88,7 @@ avatarElem.src = defaultAvatarUrl;
 const displayLoadingState = () => {
   nameUserElem.textContent = 'Loading...';
   locationUserElem.textContent = 'Loading...';
-	spinnerElem.classList.remove('spinner_hidden');
+  spinnerElem.classList.remove('spinner_hidden');
 };
 
 const fetchUserRepos = repoUrl => {
@@ -112,10 +112,10 @@ const fetchUserRepos = repoUrl => {
     })
     .catch(err => {
       console.error(err.message);
-      repoListElem.innerHTML = `<li>${err.message}</li>`;
+      alert('Failed to load data');
     })
     .finally(() => {
-			spinnerElem.classList.add('spinner_hidden');
+      spinnerElem.classList.add('spinner_hidden');
     });
 };
 
@@ -124,7 +124,9 @@ const fetchUserData = () => {
 
   if (!userName) {
     alert('Enter user name');
-    return Promise.resolve();
+    nameUserElem.textContent = '';
+    locationUserElem.textContent = '';
+    spinnerElem.classList.add('spinner_hidden');
   }
 
   return fetch(`${baseUrl}/${userName}`)
@@ -145,9 +147,7 @@ const fetchUserData = () => {
     })
     .catch(err => {
       console.error(err.message);
-      nameUserElem.textContent = 'Error';
-      locationUserElem.textContent = 'Error';
-      repoListElem.innerHTML = `<li>${err.message}</li>`;
+      alert('Failed to load data');
     });
 };
 
