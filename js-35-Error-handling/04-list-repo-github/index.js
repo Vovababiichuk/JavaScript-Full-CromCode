@@ -102,13 +102,16 @@ const fetchUserRepos = repoUrl => {
     .then(repos => {
       repoListElem.innerHTML = '';
 
-      repos.map(({ name }) => {
-        const repoListItemElem = document.createElement('li');
-        repoListItemElem.classList.add('repo-list__item');
-        repoListItemElem.textContent = name;
-
-        return repoListElem.append(repoListItemElem);
-      });
+			if (repos && Array.isArray(repos)) {
+        repos.forEach(({ name }) => {
+          const repoListItemElem = document.createElement('li');
+          repoListItemElem.classList.add('repo-list__item');
+          repoListItemElem.textContent = name;
+          repoListElem.append(repoListItemElem);
+        });
+      } else {
+        repoListElem.innerHTML = '<li>No repositories found</li>';
+      }
     })
     .catch(err => {
       console.error(err.message);
@@ -127,6 +130,7 @@ const fetchUserData = () => {
     nameUserElem.textContent = '';
     locationUserElem.textContent = '';
     spinnerElem.classList.add('spinner_hidden');
+		return Promise.resolve();
   }
 
   return fetch(`${baseUrl}/${userName}`)
